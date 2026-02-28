@@ -3,6 +3,8 @@
 
      <link rel="manifest" href="manifest.json">
      <meta name="theme-color" content="#1d1d1c">
+     <meta name="mobile-web-app-capable" content="yes">
+     <meta name="apple-mobile-web-app-capable" content="yes">
 
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Rent</title>
@@ -90,6 +92,12 @@ button {
 
 
 <script>
+     
+if ('serviceWorker' in navigator) {
+     navigator.serviceWorker.register('service-worker.js')
+     .then(() => console.log("Service Worker Registered"))
+     .catch(err => console.log("SW Error", err));
+}     
 
 function toggleTheme() {
      const body = document.body;
@@ -142,6 +150,7 @@ function calculate() {
        <h2>Pavin: ${payPavin.toFixed(2)}</h2>
        <h2>Neung: ${payneung.toFixed(2)}</h2>
        <h2>Bank: ${paybank.toFixed(2)}</h2>`
+
 
 }
 
