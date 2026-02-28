@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Rent</title>
+     <style>
+     
+     body {
+    padding: 15px;
+    margin: 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+
+      :root {
+           --bg: #1d1d1c;
+           --text: #ffffff;
+      }
+     .light-theme {
+          --bg: #ffffff;
+          --text: #000000;
+     }
+     body {
+          background-color: var(--bg);
+          color: var(--text);
+          font-family: sans-serif;
+          transition: 0.3s;
+          }
+     </style>
+
+
+</head>
+<html>
+<body>
+
+     <button id="themeButton" onclick="toggleTheme()">Toggle Light Mode</button>
+
+     <h2>Placeholder</h2>
+
+     <label>Person 1 days</label><br>
+     <input type="number" id="P1"><br><br>
+
+     <label>Person 2 days</label><br>
+     <input type="number" id="P2"><br><br>
+
+     <label>Person 3 days</label><br>
+     <input type="number" id="P3"><br><br>
+
+     <label>Person 4 days</label><br>
+     <input type="number" id="P4"><br><br>
+
+     <label>Person 5 days</label><br>
+     <input type="number" id="P5"><br><br>
+
+     <label>Person 6 days</label><br>
+     <input type="number" id="P6"><br><br>
+
+     <label>Electrical Bill</label><br>
+     <input type="number" id="ElectricalBill"><br><br>
+
+     <label>Water&Gas Bill</label><br>
+     <input type="number" id="Water&GasBill"><br><br>
+
+     <label>Wifi Bill (Fix)</label><br>
+     <span id="wifibill" style="font-weight: bold;">30.46</span><br><br>
+
+     <label>Town Council (Fix)</label><br>
+     <span id="towncouncilbill" style="font-weight: bold;">89.50</span><br><br>
+
+<button onclick="calculate()">Give</button>
+
+<p id="output"></p> <p id="output2"></p>
+
+
+<script>
+
+function toggleTheme() {
+     const body = document.body;
+     const themebutton = document.getElementById("themeButton")
+
+     body.classList.toggle("light-theme")
+
+     if (body.classList.contains("light-theme")){
+          themebutton.textContent = "Toggle Dark Mode";
+     }    else {
+          themebutton.textContent = "Toggle Light mode";
+     }
+}
+
+function calculate() {
+
+     let Gopal = Number(document.getElementById("P1").value);
+     let Joseph = Number(document.getElementById("P2").value);
+     let Montejo = Number(document.getElementById("P3").value);
+     let Pavin = Number(document.getElementById("P4").value);
+     let neung = Number(document.getElementById("P5").value);
+     let bank = Number(document.getElementById("P6").value);
+
+     let ElectricalBill = Number(document.getElementById("ElectricalBill").value);
+     let WaterGasBill = Number(document.getElementById("Water&GasBill").value);
+
+     const wifibill = 30.46
+     const towncouncilbill = 89.50
+     
+     let peoplecount = 6;
+
+     let totaldays = Gopal + Joseph + Montejo + Pavin + neung + bank;
+     let VariableBill = ElectricalBill + WaterGasBill;
+     let FixedBill = wifibill + towncouncilbill;
+
+     let FixedCost = FixedBill / peoplecount;
+     let costPerday = VariableBill / totaldays;
+
+     let payGopal = (costPerday * Gopal) + FixedCost;
+     let payJoseph = (costPerday * Joseph) + FixedCost;
+     let payMontejo = (costPerday * Montejo) + FixedCost;
+     let payPavin = (costPerday * Pavin) + FixedCost;
+     let payneung = (costPerday * neung) + FixedCost;
+     let paybank = (costPerday * bank) + FixedCost;
+
+     document.getElementById("output").innerHTML =
+      `<h2>Gopal: ${payGopal.toFixed(2)}</h2>
+       <h2>Joseph: ${payJoseph.toFixed(2)}</h2>
+       <h2>Montejo: ${payMontejo.toFixed(2)}</h2>
+       <h2>Pavin: ${payPavin.toFixed(2)}</h2>
+       <h2>Neung: ${payneung.toFixed(2)}</h2>
+       <h2>Bank: ${paybank.toFixed(2)}</h2>`
+
+}
+
+</script>
+
+</body>
+</html>
