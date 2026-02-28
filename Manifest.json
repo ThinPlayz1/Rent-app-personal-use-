@@ -1,7 +1,7 @@
 {
   "name": "Rent Split App",
   "short_name": "Rent",
-  "start_url": "index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#1d1d1c",
   "theme_color": "#1d1d1c",
