@@ -24,6 +24,13 @@
         #calendarGrid button { width: 40px; height: 40px; padding: 5px; font-size: 12px; }
         .selected-day { background-color: #4CAF50 !important; color: white; }
         .person-btn { margin: 2px; width: auto; }
+
+        .active-person {
+          background-color: #2196F3 !important;
+          color: #ffffff !important;
+          border-color: #0d47a1 !important;
+          font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +112,15 @@ function setCurrentPerson(num) {
 
     const name = personNames[num];
     document.getElementById("editingName").innerText = "Editing: " + name;
+
+    const buttons = document.querySelectorAll(".person-btn");
+    buttons.forEach((btn,index) => {
+     if (index === num - 1) {
+          btn.classList.add("active-person");
+     } else {
+          btn.classList.remove("active-person");
+     }
+    });
     generateCalendar();
 }
 
@@ -157,8 +173,9 @@ function toggleTheme() {
     btn.textContent = document.body.classList.contains("light-theme") ? "Toggle Dark Mode" : "Toggle Light Mode";
 }
 
-// Initial Run
+
 generateCalendar();
+setCurrentPerson(1);
 </script>
 </body>
 </html>
